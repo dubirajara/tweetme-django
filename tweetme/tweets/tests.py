@@ -4,10 +4,11 @@ from .models import Tweet
 
 
 class ModelTest(TestCase):
+    def setUp(self):
+        self.tweet = mommy.make('Tweet')
+
     def test_create(self):
-        mommy.make('Tweet')
         self.assertTrue(Tweet.objects.exists())
 
     def test_str(self):
-        tweet = mommy.make('Tweet')
-        self.assertEqual(tweet.content, str(tweet))
+        self.assertEqual(self.tweet.content, str(self.tweet))
