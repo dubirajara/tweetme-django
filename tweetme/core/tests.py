@@ -11,5 +11,5 @@ class HomeTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'Home' must use template index.html and base.html"""
+        """'Home' must use template index.html"""
         self.assertTemplateUsed(self.response, 'index.html')
