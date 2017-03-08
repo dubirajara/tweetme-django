@@ -19,6 +19,7 @@ class ListViewTest(TestCase):
 
 class DetailViewTest(TestCase):
     def setUp(self):
+        self.tweet = mommy.make('Tweet', id=2)
         self.response = self.client.get(r('detail'))
 
     def test_get(self):
@@ -28,6 +29,9 @@ class DetailViewTest(TestCase):
     def test_html(self):
         """'detail View' must use template tweet_detail.html"""
         self.assertTemplateUsed(self.response, 'tweets/tweet_detail.html')
+
+    def test_id(self):
+        self.assertEqual(2, self.tweet.id)
 
 
 class ModelTest(TestCase):
