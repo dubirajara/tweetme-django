@@ -6,7 +6,7 @@ from .models import Tweet
 
 class ListViewTest(TestCase):
     def setUp(self):
-        self.response = self.client.get(r('list_view'))
+        self.response = self.client.get(r('list'))
 
     def test_get(self):
         """GET 'list View' must return status code 200"""
@@ -19,7 +19,7 @@ class ListViewTest(TestCase):
 
 class DetailViewTest(TestCase):
     def setUp(self):
-        self.response = self.client.get(r('detail_view'))
+        self.response = self.client.get(r('detail'))
 
     def test_get(self):
         """GET 'detail View' must return status code 200"""

@@ -5,7 +5,7 @@
     <title>List_view</title>
 </head>
 <body>
-    {% for obj in object_list  %}
+    {% for obj in list  %}
     <p>{{ obj.content }}<br>
        {{ obj.user }}<br>
         {{ obj.timestamp|timesince }} ago</p><br>

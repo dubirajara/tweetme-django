@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from tweetme.core import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^tweet/', include('tweetme.tweets.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))

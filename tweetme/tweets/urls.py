@@ -17,6 +17,6 @@ from django.conf.urls import url
 from tweetme.tweets.views import TweetListView, TweetDetailView
 
 urlpatterns = [
-    url(r'^$', TweetListView.as_view(), name='list_view'),
-    url(r'^1/$', TweetDetailView.as_view(), name='detail_view')
+    url(r'^$', TweetListView.as_view(), name='list'),
+    url(r'^1/$', TweetDetailView.as_view(), name='detail')
 ]

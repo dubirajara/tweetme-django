@@ -4,17 +4,21 @@ from .models import Tweet
 
 
 class TweetDetailView(DetailView):
-    template_name = 'detail_view.html'
+    template_name = "detail_view.html"
     queryset = Tweet.objects.all()
 
     def get_object(self):
-        return Tweet.objects.get(id=1)
+        return Tweet.objects.get(id=2)
 
 
 class TweetListView(ListView):
-    template_name = 'list_view.html'
+    template_name = "list_view.html"
     queryset = Tweet.objects.all()
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(TweetListView, self).get_context_data(*args, **kwargs)
+        context["list"] = Tweet.objects.all()
+        return context
 
 # def tweet_detail_view(request, id=1):
 #     obj = Tweet.objects.get(id=id)
