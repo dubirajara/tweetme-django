@@ -13,8 +13,8 @@ class ListViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'list View' must use template list_view.html"""
-        self.assertTemplateUsed(self.response, 'list_view.html')
+        """'list View' must use template tweet_list.html"""
+        self.assertTemplateUsed(self.response, 'tweets/tweet_list.html')
 
 
 class DetailViewTest(TestCase):
@@ -26,8 +26,8 @@ class DetailViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'detail View' must use template detail_view.html"""
-        self.assertTemplateUsed(self.response, 'detail_view.html')
+        """'detail View' must use template tweet_detail.html"""
+        self.assertTemplateUsed(self.response, 'tweets/tweet_detail.html')
 
 
 class ModelTest(TestCase):
