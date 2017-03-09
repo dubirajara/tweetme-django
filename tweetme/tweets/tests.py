@@ -8,6 +8,7 @@ class ListViewTest(TestCase):
     def setUp(self):
         self.response = self.client.get(r('list'))
 
+
     def test_get(self):
         """GET 'list View' must return status code 200"""
         self.assertEqual(200, self.response.status_code)
@@ -19,8 +20,9 @@ class ListViewTest(TestCase):
 
 class DetailViewTest(TestCase):
     def setUp(self):
-        self.tweet = mommy.make('Tweet', id=2)
-        self.response = self.client.get(r('detail'))
+        self.tweet = mommy.make('Tweet', pk=2)
+        self.response = self.client.get(self.tweet.get_absolute_url())
+
 
     def test_get(self):
         """GET 'detail View' must return status code 200"""
@@ -31,7 +33,7 @@ class DetailViewTest(TestCase):
         self.assertTemplateUsed(self.response, 'tweets/tweet_detail.html')
 
     def test_id(self):
-        self.assertEqual(2, self.tweet.id)
+        self.assertEqual(2, self.tweet.pk)
 
 
 class ModelTest(TestCase):
