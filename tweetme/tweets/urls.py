@@ -18,5 +18,5 @@ from tweetme.tweets.views import TweetListView, TweetDetailView
 
 urlpatterns = [
     url(r'^$', TweetListView.as_view(), name='list'),
-    url(r'^1/$', TweetDetailView.as_view(), name='detail')
+    url(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name='detail')
 ]
