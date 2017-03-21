@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from tweetme.tweets.views import TweetListView, TweetDetailView
+from tweetme.tweets import views
 
 urlpatterns = [
-    url(r'^$', TweetListView.as_view(), name='list'),
-    url(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name='detail')
+    url(r'^$', views.TweetListView.as_view(), name='list'),
+    url(r'^(?P<pk>\d+)/$', views.TweetDetailView.as_view(), name='detail'),
+    url(r'^create/$', views.TweetCreateView.as_view(), name='create')
 ]
