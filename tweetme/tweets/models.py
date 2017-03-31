@@ -10,14 +10,11 @@ class Tweet(models.Model):
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-timestamp']
+
     def __str__(self):
         return self.content
 
     def get_absolute_url(self):
         return r('detail', pk=self.pk)
-
-        # def clean(self, *args, **kwargs):
-        #     content = self.content
-        #     if content == 'abc':
-        #         raise ValidationError('Content cannot be ABC')
-        #     return super(Tweet, self).clean(*args, **kwargs)
