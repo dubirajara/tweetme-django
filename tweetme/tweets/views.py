@@ -1,14 +1,20 @@
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
 from .models import Tweet
 from .forms import TweetModelForm
-from .mixins import FormUserNeededMixin
+from .mixins import FormUserNeededMixin, UserOwnerMixin
 
 
 class TweetCreateView(FormUserNeededMixin, CreateView):
-    model = Tweet
     form_class = TweetModelForm
     template_name = 'tweets/create_view.html'
+    success_url = '/tweet/'
+
+
+class TweetUpdateView(UserOwnerMixin, UpdateView):
+    model = Tweet
+    form_class = TweetModelForm
+    template_name = 'tweets/update_view.html'
     success_url = '/tweet/'
 
 
