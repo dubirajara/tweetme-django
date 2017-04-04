@@ -1,8 +1,9 @@
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.urls import reverse_lazy as r
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from .models import Tweet
 from .forms import TweetModelForm
-from .mixins import FormUserNeededMixin, UserOwnerMixin
+from .mixins import FormUserNeededMixin, UserOwnerMixin, DeleteTweetMixin
 
 
 class TweetCreateView(FormUserNeededMixin, CreateView):
@@ -16,6 +17,12 @@ class TweetUpdateView(UserOwnerMixin, UpdateView):
     form_class = TweetModelForm
     template_name = 'tweets/update_view.html'
     success_url = '/tweet/'
+
+
+class TweetDeleteView(DeleteTweetMixin, DeleteView):
+    model = Tweet
+    template_name = 'tweets/delete_confirm.html'
+    success_url = r('list')
 
 
 class TweetDetailView(DetailView):

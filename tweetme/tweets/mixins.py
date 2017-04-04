@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.utils import ErrorList
+from django.http import Http404
 
 
 class FormUserNeededMixin(object):
@@ -19,3 +20,11 @@ class UserOwnerMixin(FormUserNeededMixin, object):
         else:
             form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(['This user is not allowed to change this data'])
             return self.form_invalid(form)
+
+
+class DeleteTweetMixin(object):
+    def get_object(self):
+        obj = super(DeleteTweetMixin, self).get_object()
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
