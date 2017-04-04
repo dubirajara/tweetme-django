@@ -66,7 +66,7 @@ class UpdateViewTest(TestCase):
         self.assertTemplateUsed(self.response, 'tweets/update_view.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
 
-
     def test_csrf(self):
         """HTML must contain csrf"""
         self.assertContains(self.response, 'csrfmiddlewaretoken')
+
