@@ -23,7 +23,7 @@ from tweetme.core import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'^tweet/', include('tweetme.tweets.urls')),
+    url(r'^tweet/', include('tweetme.tweets.urls', namespace='tweet')),
 ]
 if settings.DEBUG:
     urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.shortcuts import resolve_url as r
+from django.urls import reverse as r
 from .validators import validate_content
 
 
@@ -17,4 +17,4 @@ class Tweet(models.Model):
         return self.content
 
     def get_absolute_url(self):
-        return r('detail', pk=self.pk)
+        return r('tweet:detail', kwargs={'pk':self.pk})
