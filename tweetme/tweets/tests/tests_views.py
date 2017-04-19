@@ -3,10 +3,12 @@ from django.shortcuts import resolve_url as r
 
 from model_mommy import mommy
 
+from tweetme.tweets.forms import TweetModelForm
+
 
 class ListViewTest(TestCase):
     def setUp(self):
-        self.response = self.client.get(r('list'))
+        self.response = self.client.get(r('tweet:list'))
 
     def test_get(self):
         """GET 'list View' must return status code 200"""
@@ -36,7 +38,7 @@ class DetailViewTest(TestCase):
 
 class CreateViewTest(TestCase):
     def setUp(self):
-        self.response = self.client.get(r('create'))
+        self.response = self.client.get(r('tweet:create'))
 
     def test_get(self):
         """GET 'create View' must return status code 200"""
@@ -51,11 +53,16 @@ class CreateViewTest(TestCase):
         """HTML must contain csrf"""
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
+    def test_get_create_form(self):
+        self.failUnless(isinstance(
+            self.response.context['form'],
+            TweetModelForm))
+
 
 class UpdateViewTest(TestCase):
     def setUp(self):
         self.tweet = mommy.make('Tweet', pk=2)
-        self.response = self.client.get(r('update', self.tweet.id))
+        self.response = self.client.get(r('tweet:update', self.tweet.id))
 
     def test_get(self):
         """GET 'update View' must return status code 200"""
@@ -70,3 +77,7 @@ class UpdateViewTest(TestCase):
         """HTML must contain csrf"""
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
+    def test_get_update_form(self):
+        self.failUnless(isinstance(
+            self.response.context['form'],
+            TweetModelForm))
