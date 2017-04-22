@@ -54,6 +54,7 @@ class CreateViewTest(TestCase):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_get_create_form(self):
+        """GET 'tweet form' must contain form context"""
         self.failUnless(isinstance(
             self.response.context['form'],
             TweetModelForm))
@@ -78,6 +79,7 @@ class UpdateViewTest(TestCase):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_get_update_form(self):
+        """GET 'update form' must contain form context"""
         self.failUnless(isinstance(
             self.response.context['form'],
             TweetModelForm))
