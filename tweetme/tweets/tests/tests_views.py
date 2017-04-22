@@ -79,7 +79,7 @@ class UpdateViewTest(TestCase):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_get_update_form(self):
-        """GET 'update form' must contain form context"""
+        """GET 'update form' must contain form context in html"""
         self.failUnless(isinstance(
             self.response.context['form'],
             TweetModelForm))
