@@ -1,9 +1,12 @@
 from django.urls import reverse_lazy as r
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
-from .models import Tweet
 from .forms import TweetModelForm
-from .mixins import FormUserNeededMixin, UserOwnerMixin, DeleteTweetMixin
+from .models import Tweet
+from .mixins import (FormUserNeededMixin,
+                     UserOwnerMixin,
+                     DeleteTweetMixin,
+                     TweetListViewMixin)
 
 
 class TweetCreateView(FormUserNeededMixin, CreateView):
@@ -27,7 +30,7 @@ class TweetDetailView(DetailView):
     model = Tweet
 
 
-class TweetListView(ListView):
+class TweetListView(TweetListViewMixin, ListView):
     model = Tweet
 
     def get_context_data(self, *args, **kwargs):

@@ -1,3 +1,4 @@
+{% include "tweets/search_form.html" %}<br/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,16 @@
     <title>List_view</title>
 </head>
 <body>
-    {% for obj in list  %}
-    <p>{{ obj.content }}<br>
-       {{ obj.user }}<br>
-        {{ obj.timestamp|timesince }} ago</p><br>
-    {% endfor %}
+{% for object in object_list %}
+    <p>{{ object.content }}<br/>
+    {{ object.user }}<br/>
+    {{ object.timestamp|timesince }} ago</p><br/><br/>
+{% empty %}
+    {% if request.GET.q %}
+     <p>No tweets found.</p>
+    {% else %}
+    <p>No tweets yet.</p>
+    {% endif %}
+{% endfor %}
 </body>
 </html>

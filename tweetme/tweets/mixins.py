@@ -1,6 +1,9 @@
 from django import forms
+from django.db.models import Q
 from django.forms.utils import ErrorList
 from django.http import Http404
+
+from .models import Tweet
 
 
 class FormUserNeededMixin(object):
@@ -28,3 +31,15 @@ class DeleteTweetMixin(object):
         if not obj.user == self.request.user:
             raise Http404
         return obj
+
+
+class TweetListViewMixin(object):
+    def get_queryset(self, *args, **kwargs):
+        qs = Tweet.objects.all()
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            qs = qs.filter(
+                Q(content__icontains=query) |
+                Q(user__username__icontains=query)
+            )
+        return qs
