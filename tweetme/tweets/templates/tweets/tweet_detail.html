@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block title %}{{ block.super }}Details{% endblock title %}
 
+
+{% block content %}
+<br>
 <p>{{ object }}</p>
 
 {% endblock content %}
