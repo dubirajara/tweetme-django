@@ -1,12 +1,4 @@
-<br>
-<br>
-<div class="row">
-    <div class="col-sm-12 offset-sm-4">
 <form class="form-inline" method='GET' action='{% url "tweet:list" %}'>
-    <div class="form-group">
-    <input class="form-control text-center" name='q' placeholder='Your search' value='{{ request.GET.q }}'/>
-    </div>
-    <input class="btn btn-default" type='submit' value='Search'/>
+    <input class="form-control mr-sm-2 text-center" name='q' placeholder='Your search' value='{{ request.GET.q }}'/>
+    <input class="btn btn-default my-2 my-sm-0" type='submit' value='Search'/>
 </form>
-</div>
-</div>
