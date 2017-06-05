@@ -1,39 +1,37 @@
-{% extends 'base.html' %}
-
-{% block title %}{{ block.super }}List{% endblock title %}
+{% extends "base.html" %}
 
 
 {% block content %}
+   
+    <div class='row'>
+        <div class='col-sm-3 col-xs-12' style='background-color:red;'>
+        <h1>{{ request.user }}</h1>
+        </div>
+        <div class='col-sm-9 '>
+        {% for object in object_list %}
+            <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      {% if object.image %}
+                        <img class="media-object" src="..." alt="...">
+                     {% endif %}
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    {{ object.content }}<br/>
+                    via {{ object.user }} | {{ object.timestamp|timesince }} ago | <a href='{{ object.get_absolute_url }}'>View</a>
+                  </div>
+            </div>
+            <hr/>
+        {% empty %}
+            {% if request.GET.q %}
+             <p>No tweets found.</p>
+            {% else %}
+            <p>No tweets yet.</p>
+            {% endif %}
+        {% endfor %}
 
-<div class="row">
-    <div class="col-sm-8 offset-sm-2">
-        <br>
-{% for object in object_list %}
-    <div class="media">
-    <div class="media-left">
-        <a href="#">
-            {% if object.image %}
-     <img class="media-object" src="..." alt="...">
-        {% endif %}
-        </a>
-    </div>
-    <div class="media-body">
-        {{ object.content }}<br/>
-        by {{ object.user }} |
-    {{ object.timestamp|timesince }} ago | <a href="{{ object.get_absolute_url }}">View</a>
-    </div>
-</div>
-    <hr/>
-
-{% empty %}
-    {% if request.GET.q %}
-     <p>No tweets found.</p>
-    {% else %}
-    <p>No tweets yet.</p>
-    {% endif %}
-{% endfor %}
-
-    </div>
+        </div>
     </div>
 
 {% endblock content %}
