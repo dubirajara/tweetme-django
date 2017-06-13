@@ -4,9 +4,14 @@
 {% block content %}
 
     <div class='row' xmlns="http://www.w3.org/1999/html">
+    {% if user.is_authenticated %}
         <div class='col-sm-3 col-xs-12' style='background-color:red;'>
         <h1>{{ request.user }}</h1>
         </div>
+        {% else %}
+        <div class='col-sm-3 col-xs-12'>
+        </div>
+    {% endif %}
         <div class='col-sm-9 '>
             {% if not request.GET.q %}
        <div class=''>
