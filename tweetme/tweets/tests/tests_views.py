@@ -17,6 +17,7 @@ class ListViewTest(TestCase):
     def test_html(self):
         """'list View' must use template tweet_list/search form and base.html """
         self.assertTemplateUsed(self.response, 'tweets/tweet_list.html')
+        self.assertTemplateUsed(self.response, 'tweets/form.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
 
@@ -33,6 +34,7 @@ class DetailViewTest(TestCase):
     def test_html(self):
         """'detail View' must use template tweet_detail.html"""
         self.assertTemplateUsed(self.response, 'tweets/tweet_detail.html')
+        self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
 
     def test_id(self):
@@ -51,6 +53,7 @@ class CreateViewTest(TestCase):
         """'create View' must use template create_view/form and base.html'"""
         self.assertTemplateUsed(self.response, 'tweets/create_view.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
+        self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
 
     def test_csrf(self):
@@ -77,6 +80,7 @@ class UpdateViewTest(TestCase):
         """'update View' must use template update_view/form and base.html"""
         self.assertTemplateUsed(self.response, 'tweets/update_view.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
+        self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
 
     def test_csrf(self):
