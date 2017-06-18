@@ -2,9 +2,11 @@ language: python
 python:
   - "3.6.0"
 addons:
-  postgresql: "9.4"
+  postgresql: "9.5"
 services:
   - postgresql
+dist: trusty
+sudo: required
 install:
   - pip install -q -r requirements.txt
 before_script:
