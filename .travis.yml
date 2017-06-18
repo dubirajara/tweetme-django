@@ -6,7 +6,7 @@ install:
 before_script:
   - python manage.py migrate
 script:
-  - coverage run --source='tweets' manage.py test
+  - coverage run --source='tweetme' manage.py test
 before_install:
   - pip install coveralls
 after_success:
