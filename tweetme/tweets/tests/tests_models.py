@@ -14,6 +14,10 @@ class ModelTest(TestCase):
         """Check models data create"""
         self.assertTrue(Tweet.objects.exists())
 
+    def test_instance(self):
+        """Check models data instance"""
+        self.assertIsInstance(self.tweet, Tweet)
+
     def test_str(self):
         """Check __str__ return title field"""
         self.assertEqual(self.tweet.content, str(self.tweet))
