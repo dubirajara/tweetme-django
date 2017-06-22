@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
-
+from django.urls import reverse_lazy as reverse
 from model_mommy import mommy
 
 from tweetme.tweets.forms import TweetModelForm
@@ -8,6 +8,7 @@ from tweetme.tweets.forms import TweetModelForm
 
 class ListViewTest(TestCase):
     def setUp(self):
+        self.tweet = mommy.make('Tweet', pk=2)
         self.response = self.client.get(r('tweet:list'))
 
     def test_get(self):
@@ -20,6 +21,10 @@ class ListViewTest(TestCase):
         self.assertTemplateUsed(self.response, 'tweets/form.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
+
+    def test_html_contains(self):
+        self.assertContains(self.response, self.tweet.content)
+        self.assertContains(self.response, self.tweet.user)
 
 
 class DetailViewTest(TestCase):
@@ -39,6 +44,10 @@ class DetailViewTest(TestCase):
 
     def test_id(self):
         self.assertEqual(2, self.tweet.pk)
+
+    def test_html_contains(self):
+        self.assertContains(self.response, self.tweet.content)
+        self.assertContains(self.response, self.tweet.user)
 
 
 class CreateViewTest(TestCase):
@@ -92,3 +101,6 @@ class UpdateViewTest(TestCase):
         self.failUnless(isinstance(
             self.response.context['form'],
             TweetModelForm))
+
+    def test_html_contains(self):
+        self.assertContains(self.response, self.tweet.content)
