@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
-from django.urls import reverse_lazy as reverse
 from model_mommy import mommy
 
 from tweetme.tweets.forms import TweetModelForm
@@ -16,7 +15,7 @@ class ListViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'list View' must use template tweet_list/search form and base.html """
+        """'list View' must use template tweet_list/form/search form and base.html """
         self.assertTemplateUsed(self.response, 'tweets/tweet_list.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
@@ -37,7 +36,7 @@ class DetailViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'detail View' must use template tweet_detail.html"""
+        """'detail View' must use template base/search_form and tweet_detail.html"""
         self.assertTemplateUsed(self.response, 'tweets/tweet_detail.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
@@ -59,7 +58,7 @@ class CreateViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'create View' must use template create_view/form and base.html'"""
+        """'create View' must use template create_view/form/search_form and base.html'"""
         self.assertTemplateUsed(self.response, 'tweets/create_view.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
@@ -86,7 +85,7 @@ class UpdateViewTest(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
-        """'update View' must use template update_view/form and base.html"""
+        """'update View' must use template update_view/search_form/form and base.html"""
         self.assertTemplateUsed(self.response, 'tweets/update_view.html')
         self.assertTemplateUsed(self.response, 'tweets/form.html')
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
