@@ -1,18 +1,26 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
-from model_mommy import mommy
-
 from tweetme.tweets.models import Tweet
+
+User = get_user_model()
 
 
 class ModelTest(TestCase):
     def setUp(self):
-        self.tweet = mommy.make('Tweet')
+        self.tweet_user = User.objects.create(username='tweetadmin1234')
+        self.tweet = Tweet.objects.create(user=User.objects.first(), content='hello word')
 
     def test_create(self):
         """Check models data create"""
         self.assertTrue(Tweet.objects.exists())
+
+    def test_tweet_items(self):
+        """Check models items"""
+        self.assertTrue(self.tweet.user, self.tweet_user)
+        self.assertTrue(self.tweet.content, 'hello word')
+        self.assertTrue(self.tweet.id, 1)
 
     def test_instance(self):
         """Check models data instance"""
