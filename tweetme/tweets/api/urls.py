@@ -13,19 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
-from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
+from django.conf.urls import url
+from django.views.generic.base import RedirectView
 
-from tweetme.tweets.views import TweetListView
-
+from tweetme.tweets import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', TweetListView.as_view(), name='home'),
-    url(r'^tweet/', include('tweetme.tweets.urls', namespace='tweet')),
-    url(r'^api/tweet/', include('tweetme.tweets.api.urls', namespace='tweet-api')),
+    # url(r'^$', RedirectView.as_view(url='/')),
+    # url(r'^search/$', views.TweetListView.as_view(), name='list'),
+    # url(r'^(?P<pk>\d+)/$', views.TweetDetailView.as_view(), name='detail'),
+    # url(r'^(?P<pk>\d+)/update/$', views.TweetUpdateView.as_view(), name='update'),
+    # url(r'^(?P<pk>\d+)/delete/$', views.TweetDeleteView.as_view(), name='delete'),
+    # url(r'^create/$', views.TweetCreateView.as_view(), name='create')
 ]
-if settings.DEBUG:
-    urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))

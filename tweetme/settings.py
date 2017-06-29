@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'rest_framework',
     'tweetme.core',
-    'tweetme.tweets'
+    'tweetme.tweets',
 ]
 
 MIDDLEWARE = [
