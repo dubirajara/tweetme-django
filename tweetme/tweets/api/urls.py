@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.views.generic.base import RedirectView
 
-from tweetme.tweets import views
+from tweetme.tweets.api import views
 
 urlpatterns = [
-    # url(r'^$', RedirectView.as_view(url='/')),
-    # url(r'^search/$', views.TweetListView.as_view(), name='list'),
+    url(r'^$', views.TweetListApiView.as_view(), name='list'),
     # url(r'^(?P<pk>\d+)/$', views.TweetDetailView.as_view(), name='detail'),
     # url(r'^(?P<pk>\d+)/update/$', views.TweetUpdateView.as_view(), name='update'),
     # url(r'^(?P<pk>\d+)/delete/$', views.TweetDeleteView.as_view(), name='delete'),
