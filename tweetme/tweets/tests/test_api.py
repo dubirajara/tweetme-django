@@ -22,19 +22,9 @@ class TweetListApiViewTest(APITestCase):
             user=user, content='test app'
         )
 
-    def api_signin_and_get(self):
-        self.login = self.client.login(
-            username=self.user, password=self.password
-        )
         self.response = self.client.get(r('tweet-api:list'))
         self.get_json = json.loads(self.response.content.decode('utf-8'))
 
     def test_api_get(self):
         """GET 'list api' must return status code 200"""
-        self.api_signin_and_get()
         self.assertEqual(status.HTTP_200_OK, self.response.status_code)
-
-    # def test_api_access_forbidden(self):
-    #     """GET page not logged in must return status code 403"""
-    #     self.response = self.client.get(r('tweet-api:list'))
-    #     self.assertEqual(status.HTTP_403_FORBIDDEN, self.response.status_code)
