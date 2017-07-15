@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # third-party apps
     'crispy_forms',
     'rest_framework',
+
+    # my apps
+    'tweetme.accounts',
     'tweetme.core',
     'tweetme.tweets',
 ]
