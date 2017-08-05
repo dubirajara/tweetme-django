@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
@@ -33,6 +35,10 @@ class ModelTest(TestCase):
     def test_ordering(self):
         """Check ordering to show"""
         self.assertListEqual(['-timestamp'], Tweet._meta.ordering)
+
+    def test_timestamp(self):
+        """Tweet must have an auto created_at attr."""
+        self.assertIsInstance(self.tweet.timestamp, datetime)
 
     def test_get_absolute_url(self):
         """Check get_absolute_url slug idea_details url"""
