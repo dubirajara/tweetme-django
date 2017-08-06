@@ -21,9 +21,9 @@ class ListViewTest(TestCase):
         self.assertTemplateUsed(self.response, 'tweets/search_form.html')
         self.assertTemplateUsed(self.response, 'base.html')
 
-    def test_html_contains(self):
-        self.assertContains(self.response, self.tweet.content)
-        self.assertContains(self.response, self.tweet.user)
+    # def test_html_contains(self):
+    #     self.assertContains(self.response, self.tweet.content)
+    #     self.assertContains(self.response, self.tweet.user)
 
 
 class DetailViewTest(TestCase):
