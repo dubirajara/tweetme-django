@@ -1,10 +1,10 @@
-from rest_framework import generics
+from rest_framework.generics import ListAPIView
 
 from tweetme.tweets.models import Tweet
 from .serializers import TweetModelSerializer
 
 
-class TweetListApiView(generics.ListAPIView):
+class TweetListApiView(ListAPIView):
     serializer_class = TweetModelSerializer
 
     def get_queryset(self):
