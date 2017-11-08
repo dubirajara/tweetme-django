@@ -1,4 +1,4 @@
 Django==1.11.7
 django-crispy-forms==1.7.0
-djangorestframework==3.7.1
+djangorestframework==3.7.3
 model-mommy==1.4.0
