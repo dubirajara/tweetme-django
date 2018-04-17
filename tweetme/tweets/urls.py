@@ -18,6 +18,8 @@ from django.views.generic.base import RedirectView
 
 from tweetme.tweets import views
 
+app_name = 'tweets'
+
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/')),
     url(r'^search/$', views.TweetListView.as_view(), name='list'),
