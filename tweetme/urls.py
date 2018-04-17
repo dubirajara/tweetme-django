@@ -24,8 +24,8 @@ from tweetme.tweets.views import TweetListView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TweetListView.as_view(), name='home'),
-    url(r'^tweet/', include('tweetme.tweets.urls', namespace='tweet')),
-    url(r'^api/tweet/', include('tweetme.tweets.api.urls', namespace='tweet-api')),
+    url(r'^tweet/', include(('tweetme.tweets.urls', 'tweet')),
+    url(r'^api/tweet/', include(('tweetme.tweets.api.urls', 'tweet-api')),
 ]
 if settings.DEBUG:
     urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
