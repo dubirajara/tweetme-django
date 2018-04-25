@@ -2,6 +2,7 @@
 .bash_profile
 .bash_profile.swp
 .env
+venv/
 .idea
 .venv
 *.sqlite3
