@@ -1,4 +1,4 @@
 Django==2.0.5
 django-crispy-forms==1.7.2
 djangorestframework==3.8.2
-model-mommy==1.5.1
+model-mommy==1.6.0
